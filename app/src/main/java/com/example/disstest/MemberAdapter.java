@@ -42,6 +42,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             public void onClick(View v) {
 //                Toast.makeText(context,"Click",Toast.LENGTH_LONG).show();
                 Intent reply_activity = new Intent(context,ReplyActivity.class);
+                reply_activity.putExtra("CardData",cardData);
                 context.startActivity(reply_activity);
             }
         });
