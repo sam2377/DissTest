@@ -9,7 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -60,13 +63,41 @@ public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.View
         return dataList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView content,status;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.reply_card_content);
             status = itemView.findViewById(R.id.reply_card_status);
+
+            itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {//CREATE MENU BY THIS METHOD
+            MenuItem Edit = menu.add(Menu.NONE, 1, 1, "Edit");
+            MenuItem Delete = menu.add(Menu.NONE, 2, 2, "Delete");
+            Edit.setOnMenuItemClickListener(onEditMenu);
+            Delete.setOnMenuItemClickListener(onEditMenu);
+        }
+        //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
+        private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case 1:
+                        //Do stuff
+                        break;
+
+                    case 2:
+                        //Do stuff
+
+                        break;
+                }
+                return true;
+            }
+        };
     }
 }
+
