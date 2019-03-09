@@ -21,7 +21,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_title"
+            android:id="@+id/plus_et_title"
             android:ems="9"
             android:singleLine="true"
             />
@@ -42,7 +42,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/et_content"
+            android:id="@+id/plus_et_content"
             android:ems="9"/>
     </LinearLayout>
 

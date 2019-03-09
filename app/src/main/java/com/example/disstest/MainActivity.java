@@ -6,26 +6,26 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, DissDialog.DissDialogListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PlusDialog.PlusDialogListener {
 
     private List<CardData> dataList = new ArrayList<>();
     private MemberAdapter memberAdapter;
     private final int space = 20;
 
     private FloatingActionButton floatingActionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton = findViewById(R.id.fab_plus);
         floatingActionButton.setOnClickListener(this);
 
         memberAdapter = new MemberAdapter(this,dataList);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.fab:
+            case R.id.fab_plus:
 //                Toast.makeText(this,"Click",Toast.LENGTH_SHORT).show();
                 openDialog();
                 break;
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void openDialog(){
-        DissDialog dissDialog = new DissDialog();
-        dissDialog.show(getSupportFragmentManager(),"Diss Dialog");
+        PlusDialog plusDialog = new PlusDialog();
+        plusDialog.show(getSupportFragmentManager(),"Plus Dialog");
     }
 
 

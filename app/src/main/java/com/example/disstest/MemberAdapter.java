@@ -1,6 +1,7 @@
 package com.example.disstest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +40,9 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
         viewHolder.reply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Click",Toast.LENGTH_LONG).show();
+//                Toast.makeText(context,"Click",Toast.LENGTH_LONG).show();
+                Intent reply_activity = new Intent(context,ReplyActivity.class);
+                context.startActivity(reply_activity);
             }
         });
     }
