@@ -9,24 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder>{
+public class CardDataAdapter extends RecyclerView.Adapter<CardDataAdapter.ViewHolder>{
 
     private Context context;
     private List<CardData> dataList;
 
-    MemberAdapter(Context context, List<CardData> data){
+    public CardDataAdapter(Context context, List<CardData> data){
         this.context = context;
         this.dataList = data;
     }
 
     @NonNull
     @Override
-    public MemberAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_layout,viewGroup,false);
+    public CardDataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.card_discuss_layout,viewGroup,false);
         return new ViewHolder(view);
     }
 

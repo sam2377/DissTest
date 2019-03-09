@@ -15,7 +15,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PlusDialog.PlusDialogListener {
 
     private List<CardData> dataList = new ArrayList<>();
-    private MemberAdapter memberAdapter;
+    private CardDataAdapter cardDataAdapter;
     private final int space = 20;
 
     private FloatingActionButton floatingActionButton;
@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         floatingActionButton = findViewById(R.id.fab_plus);
         floatingActionButton.setOnClickListener(this);
 
-        memberAdapter = new MemberAdapter(this,dataList);
+        cardDataAdapter = new CardDataAdapter(this,dataList);
         RecyclerView recyclerView = findViewById(R.id.main_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(memberAdapter);
+        recyclerView.setAdapter(cardDataAdapter);
         recyclerView.addItemDecoration(new SpaceItemDecoration(space));
     }
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         CardData cardData = new CardData(title,content, date,"NAME");
         dataList.add(cardData);
-        memberAdapter.notifyDataSetChanged();
+        cardDataAdapter.notifyDataSetChanged();
 //        Toast.makeText(this,"SIZE:" + dataList.size(), Toast.LENGTH_LONG).show();
     }
 }

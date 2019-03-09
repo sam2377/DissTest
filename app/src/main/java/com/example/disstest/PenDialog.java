@@ -38,7 +38,8 @@ public class PenDialog extends AppCompatDialogFragment {
                 .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        String content = et_content.getText().toString();
+                        penDialogListener.applyTexts(content);
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
