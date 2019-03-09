@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -52,7 +55,7 @@ public class CardDataAdapter extends RecyclerView.Adapter<CardDataAdapter.ViewHo
         return dataList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         TextView title,name,content,time;
         ImageView reply;
         public ViewHolder(@NonNull View itemView) {
@@ -62,7 +65,36 @@ public class CardDataAdapter extends RecyclerView.Adapter<CardDataAdapter.ViewHo
             content = itemView.findViewById(R.id.card_content);
             time = itemView.findViewById(R.id.card_time);
             reply = itemView.findViewById(R.id.card_reply);
+
+            itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {//CREATE MENU BY THIS METHOD
+            MenuItem Edit = menu.add(Menu.NONE, 1, 1, "Edit");
+            MenuItem Delete = menu.add(Menu.NONE, 2, 2, "Delete");
+            Edit.setOnMenuItemClickListener(onEditMenu);
+            Delete.setOnMenuItemClickListener(onEditMenu);
+        }
+        //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
+        private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case 1:
+                        //Do stuff
+                        break;
+
+                    case 2:
+                        //Do stuff
+
+                        break;
+                }
+                return true;
+            }
+        };
     }
+
+
 
 }
