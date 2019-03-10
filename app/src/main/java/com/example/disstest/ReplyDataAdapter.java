@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -19,10 +21,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static android.system.Os.remove;
+
 public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.ViewHolder> {
 
     private Context context;
     private List<ReplyData> dataList;
+    private ViewHolder viewHolder;
 
     public ReplyDataAdapter(Context context, List<ReplyData> dataList){
         this.context = context;
@@ -38,6 +43,7 @@ public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        this.viewHolder = viewHolder;
         final ReplyData replyData = dataList.get(position);
 
         int height = viewHolder.status.getLineHeight();
@@ -74,6 +80,11 @@ public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.View
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
 
+        private void removeItem(int position) {
+            dataList.remove(position);
+            notifyItemRemoved(position);
+        }
+
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {//CREATE MENU BY THIS METHOD
             MenuItem Edit = menu.add(Menu.NONE, 1, 1, "Edit");
@@ -83,6 +94,7 @@ public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.View
         }
         //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -92,7 +104,7 @@ public class ReplyDataAdapter extends RecyclerView.Adapter<ReplyDataAdapter.View
 
                     case 2:
                         //Do stuff
-
+                        removeItem(getAdapterPosition());
                         break;
                 }
                 return true;

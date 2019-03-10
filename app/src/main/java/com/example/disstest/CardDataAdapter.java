@@ -69,6 +69,11 @@ public class CardDataAdapter extends RecyclerView.Adapter<CardDataAdapter.ViewHo
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
 
+        private void removeItem(int position) {
+            dataList.remove(position);
+            notifyItemRemoved(position);
+        }
+
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {//CREATE MENU BY THIS METHOD
             MenuItem Edit = menu.add(Menu.NONE, 1, 1, "Edit");
@@ -87,7 +92,7 @@ public class CardDataAdapter extends RecyclerView.Adapter<CardDataAdapter.ViewHo
 
                     case 2:
                         //Do stuff
-
+                        removeItem(getAdapterPosition());
                         break;
                 }
                 return true;
